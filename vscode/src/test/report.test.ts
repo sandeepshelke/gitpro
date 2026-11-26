@@ -4,7 +4,7 @@ import { COPY, isCrash, OPEN, reportArgs, reportIssue, ReportIo } from "../repor
 
 const TITLE = "[bug] gitpro 0.3.4: wrong identity & more";
 const BODY = "### Versions\n- gitpro 0.3.4\n- why: email-1 vs email-2 (100% 50%) #1 + a&b=c?d\n";
-const URL_ = "https://github.com/Yantrakar/gitpro/issues/new?" +
+const URL_ = "https://github.com/sandeepshelke/gitpro/issues/new?" +
   `title=${encodeURIComponent(TITLE)}&body=${encodeURIComponent(BODY)}`;
 const OK = JSON.stringify({ ok: true, command: "report", kind: "bug", title: TITLE, body: BODY, url: URL_,
   truncated: false, sent: null });
@@ -49,7 +49,7 @@ test("the URI given to openExternal decodes to the CLI's title and body (nothing
   assert.equal(await reportIssue(io), "opened");
   assert.equal(calls.opened.length, 1);
   const u = new URL(calls.opened[0]);
-  assert.equal(u.origin + u.pathname, "https://github.com/Yantrakar/gitpro/issues/new");
+  assert.equal(u.origin + u.pathname, "https://github.com/sandeepshelke/gitpro/issues/new");
   assert.equal(u.searchParams.get("title"), TITLE);
   assert.equal(u.searchParams.get("body"), BODY);
   assert.deepEqual(calls.previews, [BODY]);

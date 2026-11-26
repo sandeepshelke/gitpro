@@ -2,7 +2,7 @@
 
 # gitpro
 
-<!-- mcp-name: io.github.Yantrakar/gitpro -->
+<!-- mcp-name: io.github.sandeepshelke/gitpro -->
 
 **The right Git identity, SSH key and signature for every repository.**
 
@@ -91,9 +91,9 @@ see [agent workflows](docs/agent-workflows.md).
 ## Problems and questions
 
 Run `gitpro report` to draft an issue with the versions and a redacted `gitpro why`; it shows
-you the draft and opens nothing until you say yes. Or open an issue at [github.com/Yantrakar/gitpro/issues](https://github.com/Yantrakar/gitpro/issues).
+you the draft and opens nothing until you say yes. Or open an issue at [github.com/sandeepshelke/gitpro/issues](https://github.com/sandeepshelke/gitpro/issues).
 Report a security problem privately with `gitpro report --security`, as the
-[security policy](https://github.com/Yantrakar/gitpro/security/policy) describes, not in a public issue.
+[security policy](https://github.com/sandeepshelke/gitpro/security/policy) describes, not in a public issue.
 
 ## License
 

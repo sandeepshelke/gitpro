@@ -80,8 +80,8 @@ consumer (checked):
   gitpro agrees (spec 01 differential test already has an uppercase-owner
   URL).
 - GitHub and GitLab resolve owner and repo case-insensitively over HTTPS:
-  `git ls-remote https://github.com/YANTRAKAR/GITPRO.git HEAD` returns the
-  same sha as `https://github.com/Yantrakar/gitpro.git`, and
+  `git ls-remote https://github.com/SANDEEPSHELKE/GITPRO.git HEAD` returns the
+  same sha as `https://github.com/sandeepshelke/gitpro.git`, and
   `https://gitlab.com/GITLAB-ORG/CLI.git` the same as
   `https://gitlab.com/gitlab-org/cli.git`.
 - Not verified: SSH on those hosts, or any other host. A host that is

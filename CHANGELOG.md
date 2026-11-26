@@ -2,7 +2,7 @@
 
 All notable changes to gitpro. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Release notes for
-earlier versions are on [GitHub releases](https://github.com/Yantrakar/gitpro/releases).
+earlier versions are on [GitHub releases](https://github.com/sandeepshelke/gitpro/releases).
 
 ## 0.4.6 (2026-11-06)
 
@@ -62,7 +62,7 @@ earlier versions are on [GitHub releases](https://github.com/Yantrakar/gitpro/re
 
 ### Changed
 
-- Release: [releasepro](https://github.com/Yantrakar/releasepro) runs it.
+- Release: [releasepro](https://github.com/sandeepshelke/releasepro) runs it.
   `releasepro run --as LOGIN` replaces `scripts/release.py`, with the same
   steps, and `releasepro.toml` names the six channels. The GitHub release's
   body is now the version's section of this changelog, with where to get it,
@@ -247,7 +247,7 @@ These still work in 0.4.x, print a line on stderr (or add `deprecated` to
 ## 0.3.4
 
 `gitpro report`, support links and xdist CI. See the
-[GitHub release](https://github.com/Yantrakar/gitpro/releases).
+[GitHub release](https://github.com/sandeepshelke/gitpro/releases).
 
 ## 0.3.3
 
@@ -255,4 +255,4 @@ The gitpro icon, links to gitpro.dev and MCP Registry metadata.
 
 ## 0.3.2 and earlier
 
-See [GitHub releases](https://github.com/Yantrakar/gitpro/releases).
+See [GitHub releases](https://github.com/sandeepshelke/gitpro/releases).

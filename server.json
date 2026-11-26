@@ -1,11 +1,11 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.Yantrakar/gitpro",
+  "name": "io.github.sandeepshelke/gitpro",
   "title": "gitpro",
   "description": "Read-only checks of which git name, email and SSH key a repository uses, and why.",
   "websiteUrl": "https://gitpro.dev",
   "repository": {
-    "url": "https://github.com/Yantrakar/gitpro",
+    "url": "https://github.com/sandeepshelke/gitpro",
     "source": "github"
   },
   "icons": [

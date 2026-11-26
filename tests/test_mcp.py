@@ -1103,8 +1103,8 @@ def test_draft_report_is_a_read_only_default_tool():
 def test_draft_report_returns_a_draft_and_two_urls(work_repo):
     got = payload(call("draft_report", {"path": str(work_repo), "message": "it broke"}))
     assert set(got) == {"ok", "command", "title", "body", "url", "security_url", "truncated"}
-    assert got["url"].startswith("https://github.com/Yantrakar/gitpro/issues/new?") and "it broke" in got["body"]
-    assert got["security_url"] == "https://github.com/Yantrakar/gitpro/security/advisories/new"
+    assert got["url"].startswith("https://github.com/sandeepshelke/gitpro/issues/new?") and "it broke" in got["body"]
+    assert got["security_url"] == "https://github.com/sandeepshelke/gitpro/security/advisories/new"
     assert got["truncated"] is False and str(work_repo) not in json.dumps(got)
 
 

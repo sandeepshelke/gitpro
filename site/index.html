@@ -68,7 +68,7 @@
       "downloadUrl": "https://pypi.org/project/gitpro/",
       "installUrl": "https://pypi.org/project/gitpro/",
       "sameAs": [
-        "https://github.com/Yantrakar/gitpro",
+        "https://github.com/sandeepshelke/gitpro",
         "https://pypi.org/project/gitpro/",
         "https://marketplace.visualstudio.com/items?itemName=yantrakar.gitpro"
       ],
@@ -79,7 +79,7 @@
       "@type": "SoftwareSourceCode",
       "@id": "https://gitpro.dev/#source",
       "name": "gitpro",
-      "codeRepository": "https://github.com/Yantrakar/gitpro",
+      "codeRepository": "https://github.com/sandeepshelke/gitpro",
       "programmingLanguage": "Python",
       "license": "https://opensource.org/licenses/MIT",
       "targetProduct": {"@id": "https://gitpro.dev/#software"},
@@ -104,7 +104,7 @@
 <li><a href="#start">Quickstart</a></li>
 <li class="nav-optional"><a href="#commands">Commands</a></li>
 <li class="nav-optional"><a href="#roadmap">Roadmap</a></li>
-<li><a class="btn btn-primary btn-sm" href="https://github.com/Yantrakar/gitpro" rel="noopener">GitHub</a></li>
+<li><a class="btn btn-primary btn-sm" href="https://github.com/sandeepshelke/gitpro" rel="noopener">GitHub</a></li>
 </ul>
 </nav>
 <button class="theme-toggle" type="button" data-current="system" hidden><span data-icon="light"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><span class="sr-only">Theme: Light</span></span><span data-icon="dark"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false"><path d="M20 14.2A8 8 0 0 1 9.8 4 8.2 8.2 0 1 0 20 14.2z"/></svg><span class="sr-only">Theme: Dark</span></span><span data-icon="system"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8.5 20h7M12 16v4"/></svg><span class="sr-only">Theme: System</span></span></button>
@@ -123,10 +123,10 @@
 <button class="copy" type="button" data-copy="pipx install gitpro" hidden>Copy</button>
 </div>
 <div class="actions">
-<a class="btn btn-primary" href="https://github.com/Yantrakar/gitpro" rel="noopener">GitHub</a>
+<a class="btn btn-primary" href="https://github.com/sandeepshelke/gitpro" rel="noopener">GitHub</a>
 <a class="btn btn-secondary" href="https://pypi.org/project/gitpro/" rel="noopener">PyPI</a>
 <a class="btn btn-secondary" href="https://marketplace.visualstudio.com/items?itemName=yantrakar.gitpro" rel="noopener">VS Code</a>
-<a class="btn btn-secondary" href="https://github.com/Yantrakar/gitpro/blob/main/docs/guide.md" rel="noopener">Guide</a>
+<a class="btn btn-secondary" href="https://github.com/sandeepshelke/gitpro/blob/main/docs/guide.md" rel="noopener">Guide</a>
 </div>
 </div>
 <figure class="fig hero-fig" data-anim>
@@ -354,7 +354,7 @@
 <p class="prose">Coding agents run <code>git commit</code>, <code>git push</code> and <code>gh pr create</code> on their own. gitpro checks each of those calls before it runs. When the identity is wrong, the call is denied with a reason, and the agent has to ask you.</p>
 <ul class="proof">
 <li><span class="tag tag-accent">HOOK</span><p>A Claude Code PreToolUse hook, from <code>gitpro setup</code> or the plugin. It only denies; it never grants anything.</p></li>
-<li><span class="tag">MCP</span><p>A read-only MCP server, <code>gitpro mcp</code> or <code>uvx gitpro mcp</code>, so an agent can ask which identity a repository uses and why, and whether a commit would be blocked. Tools include <code>why</code>, <code>setup</code>, <code>scan</code>, <code>audit</code>, <code>env</code> and <code>report</code>. It is listed in the official MCP Registry as <code>io.github.Yantrakar/gitpro</code>.</p></li>
+<li><span class="tag">MCP</span><p>A read-only MCP server, <code>gitpro mcp</code> or <code>uvx gitpro mcp</code>, so an agent can ask which identity a repository uses and why, and whether a commit would be blocked. Tools include <code>why</code>, <code>setup</code>, <code>scan</code>, <code>audit</code>, <code>env</code> and <code>report</code>. It is listed in the official MCP Registry as <code>io.github.sandeepshelke/gitpro</code>.</p></li>
 <li><span class="tag">APPROVAL</span><p>Agents can read the answers, and the fix commands wait for your approval.</p></li>
 <li><span class="tag">AUDIT</span><p><code>gitpro audit</code> finds commits made as the wrong identity or by an agent; <code>--fix</code> fixes the unpushed ones.</p></li>
 <li><span class="tag">LLMS.TXT</span><p>Agents can read <a href="/llms.txt">gitpro.dev/llms.txt</a> for the commands, the MCP tools and the docs in plain text.</p></li>
@@ -548,7 +548,7 @@
 <h3>Plugin</h3>
 <p>Brings the commit hook, the MCP server and a skill that edits the config from plain requests and applies only after you confirm.</p>
 <div class="tile-foot">
-<pre class="term"><code>/plugin marketplace add Yantrakar/gitpro
+<pre class="term"><code>/plugin marketplace add sandeepshelke/gitpro
 /plugin install gitpro@gitpro</code></pre>
 </div>
 </div>
@@ -568,7 +568,7 @@
 <div class="wrap">
 <div class="sec-head">
 <h2 id="commands-h">Main commands</h2>
-<p class="prose">Every command has <code>--help</code>, and the ones that read have <code>--json</code>. The <a href="https://github.com/Yantrakar/gitpro/blob/main/docs/guide.md#commands" rel="noopener">guide</a> has the full list.</p>
+<p class="prose">Every command has <code>--help</code>, and the ones that read have <code>--json</code>. The <a href="https://github.com/sandeepshelke/gitpro/blob/main/docs/guide.md#commands" rel="noopener">guide</a> has the full list.</p>
 </div>
 <table class="dtable cmds">
 <caption class="sr-only">The main gitpro commands and what each one does</caption>
@@ -593,7 +593,7 @@
 <div class="wrap">
 <div class="sec-head">
 <h2 id="roadmap-h">Done, and what comes next</h2>
-<p class="prose">Planned work has no dates, and the order may change. Ideas and requests go to <a href="https://github.com/Yantrakar/gitpro/issues" rel="noopener">GitHub issues</a>.</p>
+<p class="prose">Planned work has no dates, and the order may change. Ideas and requests go to <a href="https://github.com/sandeepshelke/gitpro/issues" rel="noopener">GitHub issues</a>.</p>
 </div>
 <div class="road">
 <div>
@@ -601,7 +601,7 @@
 <ol class="log">
 <li><span class="tag">0.4.6 · 2026-11-06</span><p><code>setup -n</code> reports each agent's hook and MCP server and updates outdated gitpro skill copies, <code>why</code> gives the Git guard's verdict, <code>scan --fix --json</code> only previews without <code>-y</code>, and <code>setup</code> and <code>mcp install</code> register the MCP server for Copilot CLI.</p></li>
 <li><span class="tag">0.4.5 · 2026-10-22</span><p>The short release announcement is plain text, and the release workflow names the releasepro version in one place.</p></li>
-<li><span class="tag">0.4.4 · 2026-10-22</span><p>Releases are run by <a href="https://github.com/Yantrakar/releasepro" rel="noopener">releasepro</a>, with a person's yes at each channel's gate. Each GitHub release carries its changelog section and a draft announcement.</p></li>
+<li><span class="tag">0.4.4 · 2026-10-22</span><p>Releases are run by <a href="https://github.com/sandeepshelke/releasepro" rel="noopener">releasepro</a>, with a person's yes at each channel's gate. Each GitHub release carries its changelog section and a draft announcement.</p></li>
 <li><span class="tag">0.4.3 · 2026-10-21</span><p>gitpro.dev is published last, once PyPI, the Marketplace, Open VSX and the MCP Registry have the version.</p></li>
 <li><span class="tag">0.4.2 · 2026-10-20</span><p>A short demo in the README and on gitpro.dev. The VS Code extension on Open VSX. Hints, fixes and errors name only commands that stay in 0.5.0, such as <code>gitpro setup</code> and <code>audit --fix</code>.</p></li>
 <li><span class="tag">0.4.1 · 2026-10-18</span><p><code>gitpro why</code>, the MCP server, <code>gitpro keys</code> and <code>gitpro scan --lost</code> mask tokens in remote URLs and in gh and glab errors. Writes are fsynced, and <code>gitpro why</code> reads commit trailers as the commit-msg hook does.</p></li>
@@ -673,7 +673,7 @@
 </details>
 <details>
 <summary>Where does the configuration live?</summary>
-<p>In <code>~/.config/gitpro.toml</code>, or wherever <code>$GITPRO_CONFIG</code> points. <code>gitpro setup</code> writes it for you; the <a href="https://github.com/Yantrakar/gitpro/blob/main/docs/guide.md#configuration" rel="noopener">guide</a> covers the format if you prefer to edit it.</p>
+<p>In <code>~/.config/gitpro.toml</code>, or wherever <code>$GITPRO_CONFIG</code> points. <code>gitpro setup</code> writes it for you; the <a href="https://github.com/sandeepshelke/gitpro/blob/main/docs/guide.md#configuration" rel="noopener">guide</a> covers the format if you prefer to edit it.</p>
 </details>
 <details>
 <summary>What does it change on my machine?</summary>
@@ -704,10 +704,10 @@
 <p>© 2026 Yantrakar AS and Sandeep Shelke · MIT licence</p>
 <nav aria-label="Footer">
 <ul>
-<li><a href="https://github.com/Yantrakar/gitpro" rel="noopener">GitHub</a></li>
+<li><a href="https://github.com/sandeepshelke/gitpro" rel="noopener">GitHub</a></li>
 <li><a href="https://pypi.org/project/gitpro/" rel="noopener">PyPI</a></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=yantrakar.gitpro" rel="noopener">VS Code</a></li>
-<li><a href="https://github.com/Yantrakar/gitpro/issues" rel="noopener">Report an issue</a></li>
+<li><a href="https://github.com/sandeepshelke/gitpro/issues" rel="noopener">Report an issue</a></li>
 <li><a href="/llms.txt">llms.txt</a></li>
 <li><a href="https://yantrakar.com" rel="noopener">Made by Yantrakar AS ↗</a></li>
 <li><a href="https://verako.no" rel="noopener">Verako ↗</a></li>

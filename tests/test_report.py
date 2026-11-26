@@ -56,7 +56,7 @@ if argv[:2] == ["auth", "token"]:
     print("stubtoken")
     sys.exit(0)
 if argv[:2] == ["issue", "create"]:
-    print("https://github.com/Yantrakar/gitpro/issues/7")
+    print("https://github.com/sandeepshelke/gitpro/issues/7")
     sys.exit(0)
 sys.exit(1)
 """
@@ -96,9 +96,11 @@ def forbidden(world: World) -> List[str]:
 
 def leaks(text: str, world: World) -> List[str]:
     """What is wrong with `text` (empty list: clean). Also checks the text once percent-decoded."""
+    from gitpro import report
     found: List[str] = []
     for variant in (text, urllib.parse.unquote(text), urllib.parse.unquote_plus(text)):
-        low = variant.lower()
+        # The project's own address is public, even where the test runner's login is part of the owner name.
+        low = variant.lower().replace(report.REPO.lower(), "")
         found += [f"contains {s!r}" for s in forbidden(world) if s in low]
         found += [f"matches {name}" for name, rx in _PATTERNS.items() if rx.search(variant)]
         found += [f"email {m}" for m in _EMAIL.findall(variant) if not _PLACEHOLDER_EMAIL.match(m)]
@@ -228,7 +230,7 @@ def test_planted_values_not_in_the_browser_url(world, monkeypatch, capsys):
     assert len(world.opened) == 4
     for url in world.opened:
         assert_clean(url, world, "browser url")
-    assert world.opened[-1] == "https://github.com/Yantrakar/gitpro/security/advisories/new"
+    assert world.opened[-1] == "https://github.com/sandeepshelke/gitpro/security/advisories/new"
     assert world.fake_bin.calls("gh") == []
 
 
@@ -247,7 +249,7 @@ def test_planted_values_not_in_the_gh_call(world, monkeypatch, capsys):
     assert rc == 0, out + err
     calls = [e for e in world.fake_bin.entries("gh") if e["argv"][:2] == ["issue", "create"]]
     assert len(calls) == 1
-    assert calls[0]["argv"][:6] == ["issue", "create", "--repo", "Yantrakar/gitpro", "--title", calls[0]["argv"][5]]
+    assert calls[0]["argv"][:6] == ["issue", "create", "--repo", "sandeepshelke/gitpro", "--title", calls[0]["argv"][5]]
     assert "--body-file" in calls[0]["argv"] and calls[0]["argv"][-1] == "-"
     assert_clean(" ".join(calls[0]["argv"]), world, "gh argv")
     assert_clean(calls[0]["stdin"].decode(), world, "gh stdin")
@@ -361,7 +363,7 @@ CLEAN_CASES = [
     "email-1@users.noreply.github.com",
     "email-12@users.noreply.github.com and email-2@users.noreply.github.com",
     "github.com",
-    "https://github.com/Yantrakar/gitpro/issues/new?title=%5Bbug%5D&body=x",
+    "https://github.com/sandeepshelke/gitpro/issues/new?title=%5Bbug%5D&body=x",
     "gitpro 0.9.3 python 3.12.3 git 2.43.0 linux",
     "OpenSSH_9.6p1 Ubuntu-3ubuntu13.14, OpenSSL 3.0.13",
     "gitpro/forge.py:512 in redact",
@@ -403,18 +405,18 @@ def test_scan_lets_ordinary_text_through(text):
 def test_scan_decodes_the_url_body_once_more():
     from gitpro import report
     body = "reach me at someone%40elsewhere.invalid"
-    url = "https://github.com/Yantrakar/gitpro/issues/new?title=t&body=" + body
+    url = "https://github.com/sandeepshelke/gitpro/issues/new?title=t&body=" + body
     hits = report.scan({"title": "t"}, [], url=url)
     assert {"kind": "email", "section": "url"} in hits
-    ok = "https://github.com/Yantrakar/gitpro/issues/new?" + urllib.parse.urlencode(
+    ok = "https://github.com/sandeepshelke/gitpro/issues/new?" + urllib.parse.urlencode(
         {"title": "[bug] t", "body": "email-1@users.noreply.github.com"}, quote_via=urllib.parse.quote)
     assert report.scan({"title": "t"}, [], url=ok) == []
-    assert report.scan({}, [], url="https://github.com/Yantrakar/gitpro/security/advisories/new") == []
+    assert report.scan({}, [], url="https://github.com/sandeepshelke/gitpro/security/advisories/new") == []
 
 
 def test_scan_sees_encoded_known_values_in_the_url():
     from gitpro import report
-    url = "https://github.com/Yantrakar/gitpro/issues/new?" + urllib.parse.urlencode(
+    url = "https://github.com/sandeepshelke/gitpro/issues/new?" + urllib.parse.urlencode(
         {"title": "t", "body": "from canaryowner"}, quote_via=urllib.parse.quote)
     assert {"kind": "owner", "section": "url"} in report.scan({}, [("owner", "canaryowner")], url=url)
 
@@ -480,7 +482,7 @@ def test_a_value_that_only_contains_a_public_word_is_still_found():
 
 
 def test_a_repo_named_gitpro_does_not_block_its_own_report(world, monkeypatch, capsys):
-    git(world.repo, "remote", "set-url", "origin", "git@github.com:Yantrakar/gitpro.git")
+    git(world.repo, "remote", "set-url", "origin", "git@github.com:sandeepshelke/gitpro.git")
     record_world(world, monkeypatch, capsys)
     for argv in (["--repo", str(world.repo)], ["--crash"], ["--denial"], ["--security", "--repo", str(world.repo)]):
         rc, out, err = go(world, capsys, "--print", *argv)
@@ -524,7 +526,7 @@ def test_the_redactor_rewrites_message_text_longest_value_first():
 
 # ================================================================ 10.4 paths
 
-ISSUE_URL = "https://github.com/Yantrakar/gitpro/issues/7"
+ISSUE_URL = "https://github.com/sandeepshelke/gitpro/issues/7"
 
 
 def gh_issue_calls(world):
@@ -546,7 +548,7 @@ def test_online_files_with_exactly_this_argv_after_a_yes(world, monkeypatch, cap
     assert rc == 0, out + err
     (call,) = gh_issue_calls(world)
     title = call["argv"][5]
-    assert call["argv"] == ["issue", "create", "--repo", "Yantrakar/gitpro", "--title", title, "--body-file", "-"]
+    assert call["argv"] == ["issue", "create", "--repo", "sandeepshelke/gitpro", "--title", title, "--body-file", "-"]
     assert "it broke" in call["stdin"].decode() and title
     assert "→ files as canarylogin on github.com, public" in out and ISSUE_URL in out
     assert world.opened == []
@@ -557,14 +559,14 @@ def test_online_n_sends_nothing(world, monkeypatch, capsys):
     monkeypatch.setattr("gitpro.report._tty", lambda: True)
     rc, out, err = go(world, capsys, "--online")
     assert rc == 0
-    assert "file this as a public issue on github.com/Yantrakar/gitpro as canarylogin? [y/N]" in out
+    assert "file this as a public issue on github.com/sandeepshelke/gitpro as canarylogin? [y/N]" in out
     assert gh_issue_calls(world) == [] and world.opened == []
 
 
 def test_online_without_a_terminal_or_yes_only_prints(world, capsys):
     rc, out, err = go(world, capsys, "--online")
     assert rc == 0 and gh_issue_calls(world) == [] and world.opened == []
-    assert "https://github.com/Yantrakar/gitpro/issues/new?" in out
+    assert "https://github.com/sandeepshelke/gitpro/issues/new?" in out
 
 
 def test_online_security_exits_two(world, capsys):
@@ -575,7 +577,7 @@ def test_online_security_exits_two(world, capsys):
 
 def test_security_opens_the_advisory_url_with_no_query(world, capsys):
     rc, out, err = go(world, capsys, "--security", "-y")
-    assert rc == 0 and world.opened == ["https://github.com/Yantrakar/gitpro/security/advisories/new"]
+    assert rc == 0 and world.opened == ["https://github.com/sandeepshelke/gitpro/security/advisories/new"]
     assert world.fake_bin.calls("gh") == []
 
 
@@ -631,9 +633,9 @@ sys.exit(1)
     assert "stubtoken" not in err + out and "ghp_" not in err + out
 
 
-@pytest.mark.parametrize("printed", ["https://evil.example/Yantrakar/gitpro/issues/7", "ok done",
-                                     "https://github.com/Yantrakar/gitpro/issues/7/../x",
-                                     "https://github.com/Yantrakar/gitpro/issues/7\nhttps://github.com/a/b/issues/1"])
+@pytest.mark.parametrize("printed", ["https://evil.example/sandeepshelke/gitpro/issues/7", "ok done",
+                                     "https://github.com/sandeepshelke/gitpro/issues/7/../x",
+                                     "https://github.com/sandeepshelke/gitpro/issues/7\nhttps://github.com/a/b/issues/1"])
 def test_a_bad_gh_url_fails_the_run(world, capsys, printed):
     world.fake_bin.add("gh", f"""
 if argv[:2] == ["auth", "token"]:

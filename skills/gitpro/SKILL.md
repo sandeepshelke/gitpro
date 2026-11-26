@@ -10,7 +10,7 @@ license: MIT
 picks the identity for each repo from its remote URL. Nothing of the tool runs
 while git runs, unless the user installed the optional guard hooks.
 
-Docs: https://github.com/Yantrakar/gitpro/blob/main/docs/guide.md
+Docs: https://github.com/sandeepshelke/gitpro/blob/main/docs/guide.md
 
 ## Rules
 
@@ -191,7 +191,7 @@ ssh_alias = "github-work"          # ssh Host that offers only ssh_key
   also shows a repo's policy problems. Plain `gitpro check` does not look at
   policies.
 - **"Set up the policy check in CI"**: GitHub, the Action in the user guide (`uses:
-  Yantrakar/gitpro@<ref>` with `fetch-depth: 0`); GitLab, the guide's
+  sandeepshelke/gitpro@<ref>` with `fetch-depth: 0`); GitLab, the guide's
   job. In CI, gitpro reads a policy file in the repo, and its
   `allowed_signers`, as they are at the range base, so a pull request cannot
   loosen the policy that judges it. A policy change in the PR takes effect
