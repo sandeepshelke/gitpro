@@ -27,9 +27,9 @@ tui = ["textual>=0.80"]  # interactive scan --fix
 
 [project.urls]
 Homepage = "https://gitpro.dev"
-Source = "https://github.com/Yantrakar/gitpro"
-Documentation = "https://github.com/Yantrakar/gitpro/blob/main/docs/guide.md"
-Issues = "https://github.com/Yantrakar/gitpro/issues"
+Source = "https://github.com/sandeepshelke/gitpro"
+Documentation = "https://github.com/sandeepshelke/gitpro/blob/main/docs/guide.md"
+Issues = "https://github.com/sandeepshelke/gitpro/issues"
 "VS Code extension" = "https://marketplace.visualstudio.com/items?itemName=yantrakar.gitpro"
 
 [project.scripts]

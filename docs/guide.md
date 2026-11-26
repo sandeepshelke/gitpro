@@ -1351,7 +1351,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0          # the whole history; a shallow clone is refused
-      - uses: Yantrakar/gitpro@<ref>
+      - uses: sandeepshelke/gitpro@<ref>
         with:
           policy: .gitpro-policy.toml
           # comment: "true"       # post the violations as a PR comment
@@ -1383,7 +1383,7 @@ gitpro-policy:
   script:
     - git fetch --quiet origin "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
     - useradd --create-home ci && chown -R ci "$CI_PROJECT_DIR"
-    - su ci -c 'python3 -m venv ~/gitpro && ~/gitpro/bin/pip install --quiet "git+https://github.com/Yantrakar/gitpro.git@<ref>"'
+    - su ci -c 'python3 -m venv ~/gitpro && ~/gitpro/bin/pip install --quiet "git+https://github.com/sandeepshelke/gitpro.git@<ref>"'
     - su ci -s /bin/bash -c 'set -o pipefail; ~/gitpro/bin/gitpro check --policy .gitpro-policy.toml --range "${CI_MERGE_REQUEST_TARGET_BRANCH_SHA:-$CI_MERGE_REQUEST_DIFF_BASE_SHA}..$CI_COMMIT_SHA" --json | tee gitpro-policy.json'
   artifacts:
     when: always
@@ -1666,7 +1666,7 @@ as `gitpro plan was removed in 0.5.0; use: gitpro setup -n`.
   merged ([Check a pull request in CI](#check-a-pull-request-in-ci)).
 - **Something else**: run `gitpro report` in the repo where it happened
   ([Reporting a problem](#reporting-a-problem)), or open an issue at
-  <https://github.com/Yantrakar/gitpro/issues> yourself. Report a security
+  <https://github.com/sandeepshelke/gitpro/issues> yourself. Report a security
   problem privately with `gitpro report --security`, as
   [SECURITY.md](../SECURITY.md) describes.
 
@@ -1739,7 +1739,7 @@ and exits 2; set `GITPRO_DEBUG=1` to also see the traceback.
   pull request, including when gitpro is missing. Install it as a plugin:
 
   ```
-  /plugin marketplace add Yantrakar/gitpro
+  /plugin marketplace add sandeepshelke/gitpro
   /plugin install gitpro@gitpro
   ```
 
@@ -1785,7 +1785,7 @@ To release, put the new version and a short comment on a new first line of `src/
 (the old first line becomes line 2; line 1's first word is the version)
 (the one place the version is written; the workflows stamp it into the VSIX, `server.json` and the site),
 add the version's section to `CHANGELOG.md` (the release notes and the announcement draft are made from it), merge, then start the release workflow
-on main with [releasepro](https://github.com/Yantrakar/releasepro): `releasepro run --as LOGIN`, or "Run workflow" on its
+on main with [releasepro](https://github.com/sandeepshelke/releasepro): `releasepro run --as LOGIN`, or "Run workflow" on its
 Actions page. `releasepro.toml` names the channels. If releasepro stops (Ctrl-C, a failed job, a gate answered no), run the
 same command again: it follows the run still going on that commit, or offers to re-run
 the failed jobs of one that failed. Pushing a tag starts nothing. The workflow checks that `src/gitpro/VERSION` is X.Y.Z, that `CHANGELOG.md` has its section and that tag `vX.Y.Z` is new, runs the whole CI matrix, builds

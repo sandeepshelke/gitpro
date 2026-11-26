@@ -16,23 +16,23 @@ gitpro scan              # repos that need a fix, with the command for each
 ## For AI agents
 
 - Before a commit, push or pull request for the user, run `gitpro why --json` in the repository. It returns the expected and the actual identity and a list of problems, each with a `fix` command. Show the fix to the user; do not run it unasked.
-- MCP server: `gitpro mcp` (stdio), or `uvx gitpro mcp` without installing. Read-only by default. Tools: `why`, `setup`, `scan`, `audit`, `env`, `report`, `which_identity`, `check_commit`, `identities`, `lost`, `env_for`, `preflight`, `operation_status`, `reconcile_operation`, `propose_change`, `change_status`, `draft_report`. Register it with `gitpro setup --agent claude|claude-desktop|copilot|cursor|gemini|opencode`. It is listed in the official MCP Registry (registry.modelcontextprotocol.io) as `io.github.Yantrakar/gitpro`.
+- MCP server: `gitpro mcp` (stdio), or `uvx gitpro mcp` without installing. Read-only by default. Tools: `why`, `setup`, `scan`, `audit`, `env`, `report`, `which_identity`, `check_commit`, `identities`, `lost`, `env_for`, `preflight`, `operation_status`, `reconcile_operation`, `propose_change`, `change_status`, `draft_report`. Register it with `gitpro setup --agent claude|claude-desktop|copilot|cursor|gemini|opencode`. It is listed in the official MCP Registry (registry.modelcontextprotocol.io) as `io.github.sandeepshelke/gitpro`.
 - Deprecated tools stay in the list in 0.4.x and are removed in 0.5.0: `which_identity` (use `why`), `check_commit` (use `why` with `committer_email`, `author_email` and `message`), `identities` (use `setup`), `lost` (use `scan` with `lost`), `env_for` (use `env`), `draft_report` (use `report`). The operation tools (`preflight`, `operation_status`, `reconcile_operation`, `propose_change`, `change_status`) have no replacement.
-- Claude Code plugin (hook, MCP server and skill): `/plugin marketplace add Yantrakar/gitpro`, then `/plugin install gitpro@gitpro`.
+- Claude Code plugin (hook, MCP server and skill): `/plugin marketplace add sandeepshelke/gitpro`, then `/plugin install gitpro@gitpro`.
 - Claude Code hook alone: `gitpro setup --agent claude`. It denies `git commit`, `git push` and `gh pr create` calls that would use the wrong identity, with a reason.
 - When gitpro crashes or blocks a commit wrongly, offer `gitpro report --print` (`--crash`, `--denial`; `--security` for a vulnerability). It prints a redacted draft and opens or files nothing without the user's yes.
 - Every command that reads has `--json`.
 
 ## Docs
 
-- [README](https://raw.githubusercontent.com/Yantrakar/gitpro/main/README.md): what gitpro does and the quickstart
-- [User guide](https://raw.githubusercontent.com/Yantrakar/gitpro/main/docs/guide.md): configuration, matching, SSH keys, signing, teams and CI, AI assistants, commands, undo, troubleshooting
-- [Agent workflows](https://raw.githubusercontent.com/Yantrakar/gitpro/main/docs/agent-workflows.md): what an agent can read before a commit, and the deprecated operation protocol
-- [Agent skill](https://raw.githubusercontent.com/Yantrakar/gitpro/main/skills/gitpro/SKILL.md): how an assistant sets up and manages identities with the CLI
+- [README](https://raw.githubusercontent.com/sandeepshelke/gitpro/main/README.md): what gitpro does and the quickstart
+- [User guide](https://raw.githubusercontent.com/sandeepshelke/gitpro/main/docs/guide.md): configuration, matching, SSH keys, signing, teams and CI, AI assistants, commands, undo, troubleshooting
+- [Agent workflows](https://raw.githubusercontent.com/sandeepshelke/gitpro/main/docs/agent-workflows.md): what an agent can read before a commit, and the deprecated operation protocol
+- [Agent skill](https://raw.githubusercontent.com/sandeepshelke/gitpro/main/skills/gitpro/SKILL.md): how an assistant sets up and manages identities with the CLI
 
 ## Optional
 
-- [Source on GitHub](https://github.com/Yantrakar/gitpro)
+- [Source on GitHub](https://github.com/sandeepshelke/gitpro)
 - [PyPI package](https://pypi.org/project/gitpro/)
 - [VS Code extension](https://marketplace.visualstudio.com/items?itemName=yantrakar.gitpro)
-- [Issues](https://github.com/Yantrakar/gitpro/issues)
+- [Issues](https://github.com/sandeepshelke/gitpro/issues)

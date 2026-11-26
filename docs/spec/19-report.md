@@ -56,7 +56,7 @@ and without exposing who they are or what they work on.
 - "I found a security hole. `gitpro report --security` opens the private advisory form,
   never a public issue."
 
-Reports go to `Yantrakar/gitpro`. The repo is a constant, `REPORT_REPO`; no config key
+Reports go to `sandeepshelke/gitpro`. The repo is a constant, `REPORT_REPO`; no config key
 changes it (section 9).
 
 ## 2. CLI surface
@@ -93,7 +93,7 @@ The flow:
 5. Print the preview (7.1).
 6. Ask. The question depends on the path:
    - Default: `open the prefilled issue form in your browser? [y/N]`.
-   - `--online`: `file this as a public issue on github.com/Yantrakar/gitpro as <login>?
+   - `--online`: `file this as a public issue on github.com/sandeepshelke/gitpro as <login>?
      [y/N]`.
    - `--security`: `open the private security advisory form? [y/N]`.
 7. `-y` answers yes.
@@ -111,13 +111,13 @@ Without `--online -y`, `--json` implies `--print`:
 
 ```json
 {"ok": true, "command": "report", "kind": "bug", "title": "...", "body": "...",
- "url": "https://github.com/Yantrakar/gitpro/issues/new?title=...&body=...",
+ "url": "https://github.com/sandeepshelke/gitpro/issues/new?title=...&body=...",
  "truncated": false, "sent": null}
 ```
 
 - For `--security`, `url` is the advisory form (section 6) and the query string is empty.
-- `--online -y --json` sets `"sent": {"issue": "https://github.com/Yantrakar/gitpro/issues/N"}`.
-  The URL is the one `gh` printed. It must match `^https://github\.com/Yantrakar/gitpro/issues/\d+$`,
+- `--online -y --json` sets `"sent": {"issue": "https://github.com/sandeepshelke/gitpro/issues/N"}`.
+  The URL is the one `gh` printed. It must match `^https://github\.com/sandeepshelke/gitpro/issues/\d+$`,
   else the run fails.
 - When the scan blocks:
   `{"ok": false, "command": "report", "blocked": [{"kind": "email", "section": "message"}]}`,
@@ -261,7 +261,7 @@ Shorter values are skipped. The list of kinds that matched is all that is report
 
 A value equal (ignoring case) to one of gitpro's own words is not searched for, and the
 Redactor does not rewrite it in `-m`:
-- `PUBLIC_WORDS` in report.py: `yantrakar`, `gitpro`, the `KNOWN_HOSTS`, and every fixed
+- `PUBLIC_WORDS` in report.py: `sandeepshelke`, `yantrakar`, `gitpro`, the `KNOWN_HOSTS`, and every fixed
   label and enum value the sections print (`versions`, `origin`, `local`, `url_form`, ...);
 - this draft's own identifiers: the crash's frame function names, file stems, command words
   and exception type, and the denial's action, agent, reason and codes. These come from the
@@ -309,7 +309,7 @@ Text the user adds in GitHub's form is out of gitpro's reach. The preview ends w
 
 **Browser (default).**
 - The URL is
-  `https://github.com/Yantrakar/gitpro/issues/new?title=<t>&body=<b>`, built with
+  `https://github.com/sandeepshelke/gitpro/issues/new?title=<t>&body=<b>`, built with
   `urllib.parse.urlencode` (`quote_via=quote`). It has no `labels` and no `template`; the
   repo has no issue templates today (no `.github/ISSUE_TEMPLATE`).
 - If the encoded URL is longer than `MAX_URL` = 7000 bytes (gitpro's own limit), the
@@ -323,7 +323,7 @@ Text the user adds in GitHub's form is out of gitpro's reach. The preview ends w
   is still 0. This keeps a text browser from taking over an SSH terminal.
 
 **Security.**
-- Opens `https://github.com/Yantrakar/gitpro/security/advisories/new` with no query
+- Opens `https://github.com/sandeepshelke/gitpro/security/advisories/new` with no query
   string. Private vulnerability reporting was turned on 2026-10-15.
 - The redacted draft (versions; `why` only with `--repo`) is printed for the user to
   paste.
@@ -337,10 +337,10 @@ Text the user adds in GitHub's form is out of gitpro's reach. The preview ends w
    - None: `✗ report --online: no identity has a github.com gh_account; drop --online to
      use the browser`, exit 2.
    - More than one distinct `Account` without `--as`: exit 2, naming the ids.
-3. `session.gate("report", "to file a public issue on Yantrakar/gitpro", "the draft
+3. `session.gate("report", "to file a public issue on sandeepshelke/gitpro", "the draft
    shown above", explicit=True, args=args)` (forge.py:416). It prints the
    `online: asking …` line. Its non-None return is the exit code.
-4. Run `session.run(acc, ["issue", "create", "--repo", "Yantrakar/gitpro", "--title",
+4. Run `session.run(acc, ["issue", "create", "--repo", "sandeepshelke/gitpro", "--title",
    title, "--body-file", "-"])`, with the body on stdin. `forge._exec` passes a `str`
    stdin as `input` (forge.py:107-112). gh's stdout must hold one issue URL that matches
    the regex in section 3.
@@ -357,7 +357,7 @@ The order:
 1. The title.
 2. The body.
 3. A blank line.
-4. The line `→ prefilled issue: github.com/Yantrakar/gitpro (you still press Submit)`,
+4. The line `→ prefilled issue: github.com/sandeepshelke/gitpro (you still press Submit)`,
    or `→ files as <login> on github.com, public`.
 5. The 5.4 line.
 
@@ -538,7 +538,7 @@ the stubs show no call.
 - A known value equal to a public word (`gitpro`, `Yantrakar`, `local`, `origin`,
   `github.com`) or to a `public` identifier is not a hit; `Some gitpro`, `gitpro-fork` and
   `local.host.test` are.
-- A repo whose remote is `git@github.com:Yantrakar/gitpro.git` reports in every mode,
+- A repo whose remote is `git@github.com:sandeepshelke/gitpro.git` reports in every mode,
   clean, with `scp github.com owner-1/repo-1`.
 - Every word of 3 or more letters that gitpro wrote in a draft (all sections but `-m`) is
   in `PUBLIC_WORDS` or the draft's identifiers.

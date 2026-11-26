@@ -1,7 +1,7 @@
 # Security
 
 Report a vulnerability privately through
-[GitHub security advisories](https://github.com/Yantrakar/gitpro/security/advisories/new).
+[GitHub security advisories](https://github.com/sandeepshelke/gitpro/security/advisories/new).
 `gitpro report --security` opens the same form. Please do not open a public
 issue for it.
 

@@ -285,7 +285,7 @@ def _wizard(out, home: Path, path: Path, original: str, from_example: bool,
     from rich.prompt import Confirm, Prompt
     text = original if cfg is not None else (
         "# Created with gitpro setup.\n"
-        "# Reference: https://github.com/Yantrakar/gitpro/blob/main/docs/guide.md\n\n")
+        "# Reference: https://github.com/sandeepshelke/gitpro/blob/main/docs/guide.md\n\n")
     if cfg is not None:
         out.print("Existing settings and comments will be kept. This adds identities; it does not edit them.")
     elif from_example:

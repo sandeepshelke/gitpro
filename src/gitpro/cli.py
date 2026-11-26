@@ -14,7 +14,7 @@ first run on a new machine:
 
 problems and questions:
   gitpro report --print    # a redacted draft of a bug report; nothing is sent unless you say so
-  https://github.com/Yantrakar/gitpro/issues
+  https://github.com/sandeepshelke/gitpro/issues
 
 -- for developers (not part of --help) --
 CALLER_UMASK is the umask gitpro was started with. It is None until main() runs; main() saves it and

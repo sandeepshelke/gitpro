@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
 PROG = "gitpro"
-REPO = "Yantrakar/gitpro"
+REPO = "sandeepshelke/gitpro"
 ISSUES_NEW = f"https://github.com/{REPO}/issues/new"
 ADVISORY_URL = f"https://github.com/{REPO}/security/advisories/new"
 KNOWN_HOSTS = ("github.com", "gitlab.com", "bitbucket.org", "codeberg.org", "git.sr.ht", "gitea.com")
@@ -29,7 +29,7 @@ CLIENT_RE = re.compile(r"^[a-z][a-z0-9-]{0,20}/[0-9A-Za-z.+-]{1,32}$")
 # them is not searched for (5.3 a): finding it shows nothing private, and searching would block every report
 # from a repo named "gitpro" or an identity named "local". Values that only contain such a word still are.
 PUBLIC_WORDS = frozenset("""
-    yantrakar gitpro github.com gitlab.com bitbucket.org codeberg.org git.sr.ht gitea.com
+    sandeepshelke yantrakar gitpro github.com gitlab.com bitbucket.org codeberg.org git.sr.ht gitea.com
     versions python linux darwin install pip pipx client unknown
     why redacted true false remotes origin upstream https ssh scp file other none expected default name email
     ssh_key exists such sign match rule matched no_match remote url pattern unset effective signingkey
@@ -642,7 +642,7 @@ def _preview(d: Draft, *, show_url: bool, login: Optional[str] = None) -> None:
     if d.kind == "security":
         print(d.full_body)
         print()
-        print("→ security reports go to the private advisory form on github.com/Yantrakar/gitpro "
+        print("→ security reports go to the private advisory form on github.com/sandeepshelke/gitpro "
               "(nothing is filed until you submit)")
         print("→ paste the draft above into the form; do not paste tokens, keys or private paths")
     else:
@@ -652,7 +652,7 @@ def _preview(d: Draft, *, show_url: bool, login: Optional[str] = None) -> None:
         if login:
             print(f"→ files as {forge.safe(login)} on github.com, public")
         else:
-            print("→ prefilled issue: github.com/Yantrakar/gitpro (you still press Submit)")
+            print("→ prefilled issue: github.com/sandeepshelke/gitpro (you still press Submit)")
         if d.truncated and not login:
             print("→ the draft is long; the rest was printed above for you to paste")
         print(NOTE_PUBLIC)
@@ -667,7 +667,7 @@ def _json(d: Draft, sent: Optional[Mapping[str, str]] = None) -> None:
                             "truncated": d.truncated, "sent": dict(sent) if sent else None})
 
 
-ISSUE_RE = re.compile(r"^https://github\.com/Yantrakar/gitpro/issues/\d+$")
+ISSUE_RE = re.compile(r"^https://github\.com/sandeepshelke/gitpro/issues/\d+$")
 
 
 def _pick_account(args: Any) -> Tuple[Any, Any]:
@@ -705,7 +705,7 @@ def _file_issue(d: Draft, session: Any, acc: Any, args: Any) -> int:
     url = (r.stdout or "").strip()
     if not ISSUE_RE.match(url):
         return _fail("gh issue create printed something that is not an issue url on "
-                     "github.com/Yantrakar/gitpro; check the issue list yourself", args)
+                     "github.com/sandeepshelke/gitpro; check the issue list yourself", args)
     if args.json:
         _json(d, {"issue": url})
     else:
@@ -746,7 +746,7 @@ def cmd_report(args) -> int:
             _preview(d, show_url=True)
         return 0
     if online:
-        code = session.gate("report", "to file a public issue on Yantrakar/gitpro", "the draft shown above",
+        code = session.gate("report", "to file a public issue on sandeepshelke/gitpro", "the draft shown above",
                             explicit=True, args=args)
         if code is not None:
             return code

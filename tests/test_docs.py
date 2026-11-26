@@ -20,7 +20,7 @@ GUIDE = (ROOT / "docs/guide.md").read_text(encoding="utf-8")
 README = (ROOT / "README.md").read_text(encoding="utf-8")
 SKILL = (ROOT / "skills/gitpro/SKILL.md").read_text(encoding="utf-8")
 VERSION = gitpro.__version__
-GIT_URL = "git+https://github.com/Yantrakar/gitpro.git"
+GIT_URL = "git+https://github.com/sandeepshelke/gitpro.git"
 INSTALL = "pipx install gitpro"
 
 # Spec 17 §5: the commands that write, each of which the skill's table must mark as writing.
@@ -227,10 +227,10 @@ def test_guide_documents_every_action_input():
 
 
 def test_guide_action_with_keys_are_inputs():
-    blocks = [b for b in re.findall(r"```yaml\n(.*?)```", GUIDE, re.S) if "uses: Yantrakar/gitpro@" in b]
+    blocks = [b for b in re.findall(r"```yaml\n(.*?)```", GUIDE, re.S) if "uses: sandeepshelke/gitpro@" in b]
     assert blocks, "guide has no workflow that uses the Action"
     for block in blocks:
-        after = block.split("uses: Yantrakar/gitpro@", 1)[1]
+        after = block.split("uses: sandeepshelke/gitpro@", 1)[1]
         keys = re.findall(r"^\s+#?\s*([\w-]+):", after.split("with:", 1)[1], re.M)
         assert keys and set(keys) <= set(_action_inputs()), keys
 
@@ -379,7 +379,7 @@ def _json(rel: str):
     return json.loads((ROOT / rel).read_text(encoding="utf-8"))
 
 
-ISSUES = "https://github.com/Yantrakar/gitpro/issues"
+ISSUES = "https://github.com/sandeepshelke/gitpro/issues"
 
 
 def test_users_are_told_where_to_report_problems():
@@ -627,7 +627,7 @@ def test_llms_txt_lists_the_default_mcp_tools_and_real_docs():
     assert LLMS.startswith("# gitpro\n\n> ")
     listed = set(re.search(r"Tools: (.+?)\. Register", LLMS)[1].replace("`", "").split(", "))
     assert listed == {name for name, tool in mcp.TOOLS.items() if not tool.execution}
-    for rel in re.findall(r"raw\.githubusercontent\.com/Yantrakar/gitpro/main/([^)]+)\)", LLMS):
+    for rel in re.findall(r"raw\.githubusercontent\.com/sandeepshelke/gitpro/main/([^)]+)\)", LLMS):
         assert (ROOT / rel).exists(), rel
     assert INSTALL in LLMS and 'href="/llms.txt"' in SITE
 

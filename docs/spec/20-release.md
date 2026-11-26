@@ -209,7 +209,7 @@ Steps:
 2a. **Re-run a failed run.** A picked-up run that ended in failure or was cancelled:
    print the failed jobs and ask `Re-run its failed jobs? [y/N]`. On yes,
    `run rerun ID --failed`, then wait (12 looks, 5 s apart) until the run's
-   `run_attempt` (`GET repos/Yantrakar/gitpro/actions/runs/ID`; gh 2.45's `run view` has no
+   `run_attempt` (`GET repos/sandeepshelke/gitpro/actions/runs/ID`; gh 2.45's `run view` has no
    attempt field) goes up, and follow it (step 3). GitHub asks for each re-run gate's
    approval again. Every job is safe to run again (section 8). No exits 0 and writes
    nothing. A run that succeeded goes to step 4 (nothing to do when the `marketplace`
@@ -223,7 +223,7 @@ Steps:
    - When a job fails or is cancelled, print its name, the run URL, the
      `run view ID --log-failed` hint and that running the script again offers the
      re-run, and exit 1.
-   - When `GET repos/Yantrakar/gitpro/actions/runs/ID/pending_deployments` lists an
+   - When `GET repos/sandeepshelke/gitpro/actions/runs/ID/pending_deployments` lists an
      environment:
      - if `current_user_can_approve` is false, stop and say so;
      - otherwise print what that gate publishes (section 6.1) and ask
@@ -253,7 +253,7 @@ Steps:
 5. **Verify** after the run succeeds, and print one line for each:
    - PyPI lists X.Y.Z, with a wheel and an sdist;
    - the GitHub release has the wheel, the sdist, the VSIX and `SHA256SUMS`;
-   - the MCP Registry has `io.github.Yantrakar/gitpro` X.Y.Z;
+   - the MCP Registry has `io.github.sandeepshelke/gitpro` X.Y.Z;
    - the Marketplace lists X.Y.Z;
    - Open VSX lists X.Y.Z, when the run's `openvsx` job succeeded; when it was skipped
      (the variable `OPENVSX` unset) the line is
@@ -510,7 +510,7 @@ the new order instead of the old one; section 10 lists them.
 The user, 2026-10-22, chose to switch gitpro to releasepro next. This is step 5 of
 releasepro's plan (releasepro `docs/spec/00-product.md`, section 9).
 
-releasepro ([Yantrakar/releasepro](https://github.com/Yantrakar/releasepro), PyPI
+releasepro ([sandeepshelke/releasepro](https://github.com/sandeepshelke/releasepro), PyPI
 `releasepro`) is `scripts/release.py` made generic. Its 0.1.0 is this script as it was
 at 0.4.3, driven by a `releasepro.toml` instead of constants. Its tests
 (`tests/test_run.py`) are the script's tests from section 10, made generic.
